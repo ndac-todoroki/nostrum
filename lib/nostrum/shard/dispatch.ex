@@ -212,7 +212,7 @@ defmodule Nostrum.Shard.Dispatch do
 
   def handle_event(:VOICE_STATE_UPDATE = event, p, state), do: {event, p, state}
 
-  def handle_event(:VOICE_STATE_UPDATE = event, p, state, pid),
+  def handle_event(:VOICE_STATE_UPDATE = event, p, state),
     do: {event, GuildServer.voice_state_update(p.guild_id, p), state}
 
   def handle_event(:VOICE_SERVER_UPDATE = event, p, state), do: {event, p, state}
