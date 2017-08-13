@@ -36,17 +36,17 @@ defmodule Nostrum.Struct.VoiceState do
   @type suppress :: boolean
 
   @type t :: %__MODULE__{
-    guild_id: guild_id,
-    channel_id: channel_id,
-    session_id: session_id,
-    user_id: user_id,
-    deaf: deaf,
-    mute: mute,
-    self_deaf: self_deaf,
-    self_mute: self_mute,
-    self_video: self_video,
-    suppress: suppress
-  }
+          guild_id: guild_id,
+          channel_id: channel_id,
+          session_id: session_id,
+          user_id: user_id,
+          deaf: deaf,
+          mute: mute,
+          self_deaf: self_deaf,
+          self_mute: self_mute,
+          self_video: self_video,
+          suppress: suppress
+        }
 
   @derive [Poison.Encoder]
   defstruct [
@@ -61,6 +61,9 @@ defmodule Nostrum.Struct.VoiceState do
     :self_video,
     :suppress
   ]
+
+  @doc false
+  def p_encode, do: %__MODULE__{}
 
   def to_struct(map) do
     struct(__MODULE__, map)
