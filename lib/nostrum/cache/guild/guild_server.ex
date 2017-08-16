@@ -345,8 +345,11 @@ defmodule Nostrum.Cache.Guild.GuildServer do
   end
 
   def handle_call({:update, guild}, _from, %Guild{} = state) do
-    guild = guild |> Guild.to_struct()
-    {:reply, {state, guild}, guild}
+    # Discord sends us partial data of the guild whenever else than GUILD CREATE.
+    # Assuming that `guild` is a map (not a struct), Map.merge/2 will only update renewed data.
+    # if `guild` should be a struct, then we must not use Map.merge/2, which will result to unexpected `nil`s
+    new_guild = Map.merge(state, guild)
+    {:reply, {state, new_guild}, new_guild}
   end
 
   def handle_call({:delete}, _from, %Guild{} = state) do
