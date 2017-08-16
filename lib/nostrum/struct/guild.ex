@@ -153,7 +153,7 @@ defmodule Nostrum.Struct.Guild do
     |> Map.update(:roles, [], &Util.list_to_struct_list(&1, Role))
     |> Map.update(:members, [], &Util.list_to_struct_list(&1, Member))
     |> Map.update(:channels, [], &Util.list_to_struct_list(&1, Channel))
-    |> Map.update(:voice_states, %{}, &Util.list_to_struct_list(&1, VoiceState))
+    |> Map.update(:voice_states, [], &Util.list_to_struct_list(&1, VoiceState))
     struct(__MODULE__, new)
   end
 end
