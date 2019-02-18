@@ -217,7 +217,7 @@ defmodule Nostrum.Cache.Guild.GuildServer do
         |> Enum.reject(fn map -> map.user_id == voice_state.user_id end)
     ]
 
-    new_state = state |> Map.replace(:voice_states, new_voice_states)
+    new_state = state |> Map.put(:voice_states, new_voice_states)
 
     {:reply, {Guild.to_struct(state), Guild.to_struct(new_state)}, new_state}
   end
@@ -231,8 +231,9 @@ defmodule Nostrum.Cache.Guild.GuildServer do
         |> Enum.reject(fn map -> map.user_id == voice_state.user_id end)
     ]
 
-    {:reply, {guild_id, old_voice_states, new_voice_states},
-     %{state | voice_states: new_voice_states}}
+    new_state = state |> Map.put(:voice_states, new_voice_states)
+
+    {:reply, {guild_id, old_voice_states, new_voice_states}, new_state}
   end
 
   def handle_cast({:chunk, :member, new_members}, %{members: members} = state) do
