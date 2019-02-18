@@ -210,8 +210,6 @@ defmodule Nostrum.Shard.Dispatch do
     {event, UserCache.update(p), state}
   end
 
-  def handle_event(:VOICE_STATE_UPDATE = event, p, state), do: {event, p, state}
-
   def handle_event(:VOICE_STATE_UPDATE = event, p, state),
     do: {event, GuildServer.voice_state_update(p.guild_id, p), state}
 
