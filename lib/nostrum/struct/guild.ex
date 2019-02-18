@@ -4,7 +4,7 @@ defmodule Nostrum.Struct.Guild do
   """
 
   alias Nostrum.Struct.{Channel, Emoji, Snowflake}
-  alias Nostrum.Struct.Guild.{Channel, Member, Role, UnavailableGuild}
+  alias Nostrum.Struct.Guild.{Member, Role, UnavailableGuild}
   alias Nostrum.Struct.VoiceState
   alias Nostrum.{Constants, Util}
 
